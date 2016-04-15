@@ -2,26 +2,52 @@
 
 // $( ()=> )
 
-$(function() {
+$(document).ready(init);
 
-	$('.wobbleButton').click(wobbleButton);
+function init() {
+	$('#btnSave').on('click', saveContact);
+}
 
-});
+function saveContact() {
 
+	var image = $('#image').val();
 
-function wobbleButton() {
+	var name = $('#name').val();
+	var phone = $('#phone').val();
+	var address = $('#address').val();
+	var email = $('#email').val();
+	var birthday = $('#birthday').val();
+	var favorite = $('#favorite').val();
 
-	$(this).addClass('animated wobble');
+	var $tr = $('<tr>');
+	var $image = $('<img>').attr('src', image).attr('class', 'img-circle');
+	var $imagetd = $('<td>').append($image);
+	var $nametd = $('<td>').text(name);
+	var $phonetd = $('<td>').text(phone);
+	var $addresstd = $('<td>').text(address);
+	var $emailtd = $('<td>').text(email);
+	var $birthdaytd = $('<td>').text(birthday);
+	var $favoritetd = $('<td>').text(favorite);
 
-	setTime(function() {
+	var array = [];
+	array.push($imagetd);
+	array.push($nametd);
+	array.push($phonetd); 
+	array.push($addresstd); 
+	array.push($emailtd);
+	array.push($birthdaytd);
+	array.push($favoritetd);
 
-		// $(this).removeClass('animated wobble');
-		$(this).removeClass('animated wobble').addClass('animated wobble');
+	$tr.append(array);
 
-	}, 500);
+	$('table').append($tr);
 
-	// setTime(() => {
-
-	// })
+	$('#image').val('');
+	$('#name').val('');
+	$('#phone').val('');
+	$('#address').val('');
+	$('#email').val('');
+	$('#birthday').val('');
+	$('#favorite').val('');
 
 }
